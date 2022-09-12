@@ -2,4 +2,7 @@
     <string name="app_name">Laboratorio 8</string>
     <string name="az">Ordenar: A - Z</string>
     <string name="za">Ordenar: Z - A</string>
+    <string name="species">Species:</string>
+    <string name="status">Status:</string>
+    <string name="gender">Gender:</string>
 </resources>

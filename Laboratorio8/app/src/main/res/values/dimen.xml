@@ -9,4 +9,5 @@
     <dimen name="margin_extralarge">75dp</dimen>
     <dimen name="icon_size_normal">70dp</dimen>
     <dimen name="text_smol">18sp</dimen>
+    <dimen name="big_0">170dp</dimen>
 </resources>

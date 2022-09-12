@@ -18,6 +18,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
     private lateinit var species: TextView
     private lateinit var status: TextView
     private lateinit var gender: TextView
+    private lateinit var name: TextView
     private val arg: CharacterDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,10 +33,12 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
             diskCachePolicy(CachePolicy.ENABLED)
         }
 
+        name = view.findViewById(R.id.charName)
         species = view.findViewById(R.id.species)
         status = view.findViewById(R.id.status)
         gender = view.findViewById(R.id.gender)
 
+        name.text = arg.char.name
         species.text = arg.char.species
         status.text = arg.char.status
         gender.text = arg.char.gender

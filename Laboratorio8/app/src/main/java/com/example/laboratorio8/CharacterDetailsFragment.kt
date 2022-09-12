@@ -18,7 +18,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
     private lateinit var species: TextView
     private lateinit var status: TextView
     private lateinit var gender: TextView
-    val arg: CharacterDetailsFragmentArgs by navArgs()
+    private val arg: CharacterDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

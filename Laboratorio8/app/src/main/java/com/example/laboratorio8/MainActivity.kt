@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
         navController = navHostFragment.navController
 
-        val appbarConfig = AppBarConfiguration(setOf(R.id.CharactersFragment, R.id.CharacterDetailsFragment))
+        val appbarConfig = AppBarConfiguration(setOf(R.id.CharactersFragment))
         topAppBar = findViewById(R.id.toolbar)
         topAppBar.setupWithNavController(navController, appbarConfig)
 

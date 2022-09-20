@@ -5,4 +5,6 @@
     <string name="species">Species:</string>
     <string name="status">Status:</string>
     <string name="gender">Gender:</string>
+    <string name="origin">Origin:</string>
+    <string name="episode_appearances">Episode Appearances:</string>
 </resources>

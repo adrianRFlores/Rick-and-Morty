@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
-import java.util.*
 
 class CharacterAdapter(private val dataSet: MutableList<Character>, private val listener: CharListener) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
@@ -33,6 +31,7 @@ class CharacterAdapter(private val dataSet: MutableList<Character>, private val 
             imageType.load(char.image){
                 placeholder(R.drawable.ic_baseline_insert_emoticon_24)
                 transformations(CircleCropTransformation())
+                error(R.drawable.ic_baseline_insert_emoticon_24)
                 memoryCachePolicy(CachePolicy.DISABLED)
                 diskCachePolicy(CachePolicy.DISABLED)
             }

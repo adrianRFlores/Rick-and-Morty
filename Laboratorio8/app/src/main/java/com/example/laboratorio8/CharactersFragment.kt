@@ -8,17 +8,39 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdapter.CharListener {
 
     private lateinit var recyclerView: RecyclerView
-    private val charList: MutableList<Character> = RickAndMortyDB.getCharacters()
+    private lateinit var charList: MutableList<Character>
     private lateinit var topAppBar: Toolbar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         topAppBar = (activity as MainActivity).getToolbar()
         recyclerView = view.findViewById(R.id.recycler_recyclerActivity)
+
+        charList = ArrayList()
+        RetrofitInstance.api.getChars().enqueue(object: Callback<APIResponse> {
+            override fun onResponse(
+                call: Call<APIResponse>,
+                response: Response<APIResponse>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    charList = response.body()!!.chars as MutableList<Character>
+                    setupRecycler()
+                }
+            }
+
+            override fun onFailure(call: Call<APIResponse>, t: Throwable) {
+
+            }
+
+        })
+
         setupRecycler()
         setListeners()
     }
@@ -54,7 +76,4 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
         )
     }
 
-    fun updateRecycler(chars: MutableList<Character>){
-        recyclerView.adapter = CharacterAdapter(chars, this)
-    }
 }

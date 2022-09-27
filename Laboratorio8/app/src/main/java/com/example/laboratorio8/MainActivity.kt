@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
         navController = navHostFragment.navController
 
-        val appbarConfig = AppBarConfiguration(setOf(R.id.CharactersFragment))
+        val appbarConfig = AppBarConfiguration(setOf(R.id.loginFragment, R.id.CharactersFragment))
         topAppBar = findViewById(R.id.toolbar)
         topAppBar.setupWithNavController(navController, appbarConfig)
 
@@ -43,11 +43,15 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener {_, destination, _ ->
             when(destination.id) {
                 R.id.CharacterDetailsFragment -> {
+                    topAppBar.visibility = View.VISIBLE
                     topAppBar.menu.findItem(R.id.menu_item_a_z).isVisible = false
                     topAppBar.menu.findItem(R.id.menu_item_z_a).isVisible = false
                 }
-
+                R.id.loginFragment -> {
+                    topAppBar.visibility = View.GONE
+                }
                 else -> {
+                    topAppBar.visibility = View.VISIBLE
                     topAppBar.menu.findItem(R.id.menu_item_a_z).isVisible = true
                     topAppBar.menu.findItem(R.id.menu_item_z_a).isVisible = true
                 }

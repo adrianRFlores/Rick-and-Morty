@@ -28,7 +28,7 @@ class CharacterAdapter(private val dataSet: MutableList<Character>, private val 
         @SuppressLint("SetTextI18n")
         fun setData(character: Character){
             this.char = character
-            imageType.load(char.image){
+            imageType.load("https://rickandmortyapi.com/api/character/avatar/${char.id}.jpeg"){
                 placeholder(R.drawable.ic_baseline_insert_emoticon_24)
                 transformations(CircleCropTransformation())
                 error(R.drawable.ic_baseline_insert_emoticon_24)

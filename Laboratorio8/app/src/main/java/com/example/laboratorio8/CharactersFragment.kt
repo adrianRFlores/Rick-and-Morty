@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,9 +20,11 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
     private lateinit var recyclerView: RecyclerView
     private lateinit var charList: MutableList<Character>
     private lateinit var topAppBar: Toolbar
+    private lateinit var login: LoginFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        login = LoginFragment()
         topAppBar = (activity as MainActivity).getToolbar()
         recyclerView = view.findViewById(R.id.recycler_recyclerActivity)
 
@@ -57,6 +62,13 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
                 R.id.menu_item_z_a -> {
                     charList.sortByDescending { char -> char.name }
                     recyclerView.adapter!!.notifyDataSetChanged()
+                    true
+                }
+                R.id.logout ->{
+                    CoroutineScope(Dispatchers.IO).launch {
+                        login.deleteMail(requireContext())
+                    }
+                    requireView().findNavController().navigate(R.id.action_charactersFragment_to_loginFragment)
                     true
                 }
                 else -> false

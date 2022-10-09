@@ -107,7 +107,7 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
         RetrofitInstance.api.getChars().enqueue(object : Callback<APIResponse>{
             override fun onResponse(call: Call<APIResponse>, response: Response<APIResponse>) {
                 if(response.isSuccessful && response.body() != null){
-                    charList = charAPItoChar(response.body()!!.results)
+                    charList = response.body()!!.chars
                     saveChars(charList)
                     setupRecycler()
                 }
@@ -136,7 +136,7 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
                     CoroutineScope(Dispatchers.IO).launch { db.getChar().deleteAll() }
                     CoroutineScope(Dispatchers.Main).launch{
                         charList.clear()
-                        charList = charAPItoChar(response.body()!!.results)
+                        charList = response.body()!!.chars
                         addDB(charList)
                         setupRecycler()
                     }

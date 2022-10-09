@@ -66,7 +66,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         toolbar.setOnMenuItemClickListener{menuItem->
             when(menuItem.itemId){
                 R.id.sync->{
-                    reloadCharacter()
+                    loadChar()
                     true
                 }
                 R.id.delete->{
@@ -114,7 +114,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         }
     }
 
-    private fun reloadCharacter() {
+    private fun loadChar() {
         RetrofitInstance.api.getCharacter(arg.char.id).enqueue(object: Callback<CharacterDetailsAPI>{
             override fun onResponse(call: Call<CharacterDetailsAPI>, response: Response<CharacterDetailsAPI>) {
                 if(response.isSuccessful && response.body() != null){
@@ -137,6 +137,12 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
             }
             override fun onFailure(call: Call<CharacterDetailsAPI>, t: Throwable) {}
         })
+    }
+
+    private fun charAPItoChar(char: CharacterDetailsAPI): Character {
+        return Character(char.gender, char.id, char.image, char.name, char.origin.name,
+            char.species, char.status, char.episode.size)
+
     }
 
 }

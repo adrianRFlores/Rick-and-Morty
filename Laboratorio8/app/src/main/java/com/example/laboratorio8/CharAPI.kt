@@ -12,5 +12,5 @@ interface CharAPI {
     @GET("/api/character/{id}")
     fun getCharacter(
         @Path("id") id: Int
-    ): Call<Character>
+    ): Call<CharacterDetailsAPI>
 }

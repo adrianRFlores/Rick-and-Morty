@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class APIResponse(
     val info: CallData,
-    @SerializedName("results") val chars: List<Character>
+    @SerializedName("results") val chars: MutableList<Character>
 )

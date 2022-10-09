@@ -1,18 +1,17 @@
 package com.example.laboratorio8
 
-import java.io.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Character(
-    val url: String,
     val gender: String,
+    @PrimaryKey
     val id: Int,
     val image: String,
     val name: String,
-    val origin: Origin,
+    val origin: String,
     val species: String,
     val status: String,
-    val location: Location,
-    val type: String,
-    val episode: List<String>,
-    val created: String
-) : Serializable
+    val epCount: Int,
+)

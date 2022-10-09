@@ -43,17 +43,18 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener {_, destination, _ ->
             when(destination.id) {
                 R.id.CharacterDetailsFragment -> {
+                    topAppBar.menu.clear()
+                    topAppBar.inflateMenu(R.menu.topbar_character)
                     topAppBar.visibility = View.VISIBLE
-                    topAppBar.menu.findItem(R.id.menu_item_a_z).isVisible = false
-                    topAppBar.menu.findItem(R.id.menu_item_z_a).isVisible = false
+
                 }
                 R.id.loginFragment -> {
                     topAppBar.visibility = View.GONE
                 }
                 else -> {
+                    topAppBar.menu.clear()
                     topAppBar.visibility = View.VISIBLE
-                    topAppBar.menu.findItem(R.id.menu_item_a_z).isVisible = true
-                    topAppBar.menu.findItem(R.id.menu_item_z_a).isVisible = true
+                    topAppBar.inflateMenu(R.menu.topbar)
                 }
             }
         }
